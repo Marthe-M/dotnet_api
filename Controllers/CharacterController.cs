@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 using dotnet_udemy.Services.CharacterService;
 using dotnet_udemy.Dtos.Character;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace dotnet_udemy.Controllers
 {
+
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
@@ -23,6 +26,7 @@ namespace dotnet_udemy.Controllers
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
+          
             return Ok(await _characterService.GetAllCharacters());
         }
 
